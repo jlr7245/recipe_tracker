@@ -1,0 +1,12 @@
+<h2>Create a recipe</h2>
+
+<%= form_for @recipe do |f| %>
+
+  <%= f.text_field :name, placeholder: 'name' %>
+  <%= f.text_field :description, placeholder: 'description'%>
+
+  <%= f.collection_check_boxes(:ingredient_ids, @ingredients, :id, :name) %>
+
+  <%= f.submit %>
+
+<% end %>
