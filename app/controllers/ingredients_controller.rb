@@ -1,18 +1,17 @@
 class IngredientsController < ApplicationController
-  before_action :load_categories, only: [:new, :create]
-  
+  before_action :load_categories, only: [:new, :create, :edit, :update]
+  before_action :load_ingredient, only: [:show, :update, :edit]
+
   def index
     @ingredients = Ingredient.order(:created_at)
   end
 
   def show
-    @ingredient = Ingredient.find(params[:id])
     @recipes = @ingredient.recipes
   end
 
   def new
     @ingredient = Ingredient.new
-    @categories = Ingredient.categories.keys
   end
 
   def create
@@ -21,9 +20,21 @@ class IngredientsController < ApplicationController
       flash[:notice] = "You created a thing!"
       redirect_to ingredient_path(@ingredient)
     else
-      @categories = Ingredient.categories.keys      
       flash[:error] = @ingredient.errors.full_messages.join(', ')
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @ingredient.update(ingredient_params)
+      flash[:notice] = "You updated a thing!"
+      redirect_to ingredient_path(@ingredient)
+    else
+      flash[:error] = @ingredient.errors.full_messages.join(', ')
+      render :edit
     end
   end
 
@@ -34,6 +45,10 @@ class IngredientsController < ApplicationController
 
   def load_categories
     @categories = Ingredient.categories.keys    
+  end
+
+  def load_ingredient
+    @ingredient = Ingredient.find(params[:id])
   end
 
 end
