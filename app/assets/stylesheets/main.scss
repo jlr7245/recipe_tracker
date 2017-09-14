@@ -1,0 +1,12 @@
+.flash {
+  padding: 10px;
+  line-height: 3em;
+  .notice {
+    background-color: lightblue;
+    border: 1px solid blue;
+  }
+  .error {
+    background-color: pink;
+    border: 1px solid red;
+  }
+}
