@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :load_ingredients, only: [:new]
+  before_action :load_ingredients, only: [:new, :create]
 
   def index
     @recipes = Recipe.all
@@ -21,7 +21,7 @@ class RecipesController < ApplicationController
       flash[:notice] = "YAY"
       redirect_to recipe_path(@recipe.id)
     else
-      flash[:error] = @ingredient.errors.full_messages.join(', ')
+      flash[:error] = @recipe.errors.full_messages.join(', ')
       render :new
     end
   end

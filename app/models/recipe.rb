@@ -5,4 +5,6 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
 
   scope :recently_added, -> { where(created_at: (1.day.ago..Time.now))}
+
+  validates_presence_of :name, :description
 end
