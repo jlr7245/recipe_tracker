@@ -15,8 +15,14 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    @ingredient.save
-    redirect_to ingredient_path(@ingredient)
+    if @ingredient.save
+      flash[:notice] = "You created a thing!"
+      redirect_to ingredient_path(@ingredient)
+    else
+      @categories = Ingredient.categories.keys      
+      flash[:error] = @ingredient.errors.full_messages.join(', ')
+      render :new
+    end
   end
 
   private
