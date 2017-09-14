@@ -3,8 +3,12 @@
 <p><%= @recipe.description%> </p>
 
 <ul>
-  <% @ingredients.each do |ing| %>
-    <li><%= link_to ing.name, ingredient_path(ing)%>
+  <% @recipe_ingredients.each do |ri| %>
+    <% ing = ri.ingredient %>
+    <li>
+      <%= link_to ing.name, ingredient_path(ing)%>
+      (<%= ri.amount %>)
+    </li>
   <%end%>
 </ul>
 

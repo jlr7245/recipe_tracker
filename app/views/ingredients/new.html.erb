@@ -1,0 +1,5 @@
+<%= form_for @ingredient, url: {action: "create"} do |f| %>
+  <%= f.text_field :name, placeholder: "Name" %>
+  <%= f.select :category, @categories %>
+  <%= f.submit "Add it" %>
+<% end %>
