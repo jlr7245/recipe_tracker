@@ -1,4 +1,6 @@
 class IngredientsController < ApplicationController
+  before_action :load_categories, only: [:new, :create]
+  
   def index
     @ingredients = Ingredient.order(:created_at)
   end
@@ -28,6 +30,10 @@ class IngredientsController < ApplicationController
   private
   def ingredient_params
     params.require(:ingredient).permit([:name, :category])
+  end
+
+  def load_categories
+    @categories = Ingredient.categories.keys    
   end
 
 end
