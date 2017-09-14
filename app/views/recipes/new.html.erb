@@ -6,10 +6,11 @@
   <%= f.text_field :description, placeholder: 'description'%>
 
   <%= f.collection_check_boxes(:ingredient_ids, @ingredients, :id, :name) do |b| %>
-    <div>
+    <div class="ing-opt">
       <%= b.label do %>
         <%= b.check_box %>
         <%= b.object.name %>
+        <%= text_field :amount, :amount %>
       <% end %>
     </div>
   <% end %>
