@@ -5,7 +5,14 @@
   <%= f.text_field :name, placeholder: 'name' %>
   <%= f.text_field :description, placeholder: 'description'%>
 
-  <%= f.collection_check_boxes(:ingredient_ids, @ingredients, :id, :name) %>
+  <%= f.collection_check_boxes(:ingredient_ids, @ingredients, :id, :name) do |b| %>
+    <div>
+      <%= b.label do %>
+        <%= b.check_box %>
+        <%= b.object.name %>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= f.submit %>
 
