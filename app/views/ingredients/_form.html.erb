@@ -1,0 +1,5 @@
+<%= form_for @ingredient do |f| %>
+  <%= f.text_field :name, placeholder: "Name" %>
+  <%= f.select :category, @categories %>
+  <%= f.submit "Hit me!" %>
+<% end %>

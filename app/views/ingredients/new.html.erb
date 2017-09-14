@@ -1,5 +1,3 @@
-<%= form_for @ingredient, url: {action: "create"} do |f| %>
-  <%= f.text_field :name, placeholder: "Name" %>
-  <%= f.select :category, @categories %>
-  <%= f.submit "Add it" %>
-<% end %>
+<h2>New Ingredient!</h2>
+
+<%= render partial: 'form'%>
